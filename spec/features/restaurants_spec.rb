@@ -16,10 +16,20 @@ feature 'restaurants' do
     end
 
     scenario 'should display a restaurant that is added' do
-      visit 'restaurants'
+      visit '/restaurants'
       expect(page).to have_content 'KFC'
       expect(page).not_to have_content 'No restaurants yet'
+    end
+  end
 
+  context 'adding a restaurant' do
+    scenario 'should add a restaurant' do
+      visit '/restaurants'
+      click_link 'Add a restaurant'
+      fill_in('Name', :with => "KFC")
+      click_button('Create Restaurant')
+      expect(page).to have_content 'KFC'
+      expect(page).not_to have_content 'No restaurants yet'
     end
   end
 

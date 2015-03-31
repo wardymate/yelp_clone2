@@ -45,4 +45,18 @@ feature 'restaurants' do
     end
   end
 
+  context 'updating a restaurant' do
+
+    before {Restaurant.create name: 'KFC'}
+
+    scenario 'should be able to change details' do
+      visit '/restaurants'
+      click_link 'Edit KFC'
+      fill_in 'Name', with: 'Kentucky Fried Chicken'
+      click_button('Update Restaurant')
+      expect(page).to have_content 'Kentucky Fried Chicken'
+      expect(page).not_to have_content 'KFC'
+    end
+  end
+
 end

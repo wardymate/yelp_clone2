@@ -18,6 +18,20 @@ class RestaurantsController < ApplicationController
   end
 
   def show
+    fetch_params
+  end
+
+  def edit
+    fetch_params
+  end
+
+  def update
+    fetch_params
+    @restaurant.update(restaurant_params)
+    redirect_to '/restaurants'
+  end
+
+  def fetch_params
     @restaurant = Restaurant.find(params[:id])
   end
 
